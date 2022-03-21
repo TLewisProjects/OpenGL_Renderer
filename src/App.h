@@ -6,34 +6,21 @@
 
 #include "Shader.h"
 #include "Texture.h"
+#include "Object.h"
 
 class App
 {
 public:
 	// Members
 	GLFWwindow* window;
-	GLuint VAO1;
-	GLuint VAO2;
-	GLuint VAO3;
-
-	GLuint VBO1;
-	GLuint VBO2;
-	GLuint VBO3;
-
-	GLuint EBO1;
-	
-	Texture texture1;
-	Shader shaderProgram1;
-	Shader shaderProgram2;
+	Object cube1;
 
 	// Methods
 	App();
 	~App();
 
 	int initializeWindow();
-	void setupVertexBuffers();
-	void setupShaderProgram();
-	void loadTexture(const char* textureFile);
+	void setupObjects();
 
 private:
 

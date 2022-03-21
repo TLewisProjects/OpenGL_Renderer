@@ -22,13 +22,11 @@ Object::Object(glm::vec3 position, glm::vec3 rotation, const char* textureLocati
 	loadModel();
 	loadShader(vertexLocation, fragmentLocation);
 	loadTexture(textureLocation);
+	createModelMatrix();
 }
 
 Object::~Object()
 {
-	glDeleteTextures(1, &(this->texture.ID));
-	glDeleteVertexArrays(1, &(this->VAO));
-	glDeleteBuffers(1, &(this->VBO));
 }
 
 void Object::loadTexture(const char* textureLocation)
@@ -47,14 +45,14 @@ void Object::loadModel()
 {
 	float cube[] = {
 		// positions          // colors           // texture coords
-		-0.65f,  0.9f, 0.0f,   0.5f, 0.5f, 0.5f,   1.0f, 1.0f,   // top right front
-		-0.65f, 0.65f, 0.0f,   0.5f, 0.5f, 0.5f,   1.0f, 0.0f,   // bottom right front
-		-0.9f, 0.65f, 0.0f,   0.5f, 0.5f, 0.5f,   0.0f, 0.0f,   // bottom left front
-		-0.9f,  0.9f, 0.0f,   0.5f, 0.5f, 0.5f,   0.0f, 1.0f,   // top left front
-		-0.65f,  0.9f, -0.25f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right back
-		-0.65f, 0.65f, -0.25f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right back
-		-0.9f, 0.65f, -0.25f,    0.0f, 0.0f, 1.0f,   0.0f, 0.0f,  // bottom left back
-		-0.9f,  0.9f, -0.25f,    1.0f, 1.0f, 0.0f,   0.0f, 1.0f   // top left back
+		0.5f,  0.5f, 0.0f,   0.5f, 0.5f, 0.5f,   1.0f, 1.0f,   // top right front
+		0.5f, -0.5f, 0.0f,   0.5f, 0.5f, 0.5f,   1.0f, 0.0f,   // bottom right front
+		-0.5f, -0.5f, 0.0f,   0.5f, 0.5f, 0.5f,   0.0f, 0.0f,   // bottom left front
+		-0.5f,  0.5f, 0.0f,   0.5f, 0.5f, 0.5f,   0.0f, 1.0f,   // top left front
+		0.5f,  0.5f, -1.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right back
+		0.5f, -0.5f, -1.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right back
+		-0.5f, -0.5f, -1.0f,    0.0f, 0.0f, 1.0f,   0.0f, 0.0f,  // bottom left back
+		-0.5f,  0.5f, -1.0f,    1.0f, 1.0f, 0.0f,   0.0f, 1.0f   // top left back
 	};
 
 
@@ -100,8 +98,23 @@ void Object::loadModel()
 void Object::createModelMatrix()
 {
 	this->model = glm::mat4(1.0f);
+	this->model = glm::translate(model, this->position);
 	this->model = glm::rotate(model, glm::radians(this->rotX), glm::vec3(1.0f, 0.0f, 0.0f));
 	this->model = glm::rotate(model, glm::radians(this->rotY), glm::vec3(0.0f, 1.0f, 0.0f));
 	this->model = glm::rotate(model, glm::radians(this->rotZ), glm::vec3(0.0f, 0.0f, 1.0f));
-	this->model = glm::translate(model, this->position);
+	
+}
+
+void Object::update()
+{
+	createModelMatrix();
+}
+
+void Object::destroyObject()
+{
+	glDeleteTextures(1, &(this->texture.ID));
+	glDeleteBuffers(1, &(this->VBO));
+	glDeleteVertexArrays(1, &(this->VAO));
+	glDeleteProgram(this->shader.ID);
+	
 }

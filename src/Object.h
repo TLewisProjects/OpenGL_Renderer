@@ -8,6 +8,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 #include "Shader.h"
 #include "Texture.h"
@@ -32,7 +33,7 @@ public:
 	// Methods
 	Object();
 	Object(glm::vec3 position, glm::vec3 rotation);
-	Object::Object(glm::vec3 position, glm::vec3 rotation, const char* textureLocation, const char* vertexLocation, const char* fragmentLocation)
+	Object(glm::vec3 position, glm::vec3 rotation, const char* textureLocation, const char* vertexLocation, const char* fragmentLocation);
 	~Object();
 
 	void loadTexture(const char* textureLocation);
@@ -40,6 +41,9 @@ public:
 	void loadShader(const char* vertex, const char* fragment);
 	void loadModel();
 	void createModelMatrix();
+	void update();
+
+	void destroyObject();
 
 private:
 
