@@ -45,30 +45,36 @@ void Object::loadModel()
 {
 	float cube[] = {
 		// positions          // colors           // texture coords
-		0.5f,  0.5f, 0.0f,   0.5f, 0.5f, 0.5f,   1.0f, 1.0f,   // top right front
-		0.5f, -0.5f, 0.0f,   0.5f, 0.5f, 0.5f,   1.0f, 0.0f,   // bottom right front
-		-0.5f, -0.5f, 0.0f,   0.5f, 0.5f, 0.5f,   0.0f, 0.0f,   // bottom left front
-		-0.5f,  0.5f, 0.0f,   0.5f, 0.5f, 0.5f,   0.0f, 1.0f,   // top left front
-		0.5f,  0.5f, -1.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right back
-		0.5f, -0.5f, -1.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right back
-		-0.5f, -0.5f, -1.0f,    0.0f, 0.0f, 1.0f,   0.0f, 0.0f,  // bottom left back
-		-0.5f,  0.5f, -1.0f,    1.0f, 1.0f, 0.0f,   0.0f, 1.0f   // top left back
+		-1.0f,  -1.0f, 1.0f,   0.5f, 0.5f, 0.5f,   1.0f, 1.0f,   // top right front
+		1.0f, -1.0f, 1.0f,   0.5f, 0.5f, 0.5f,   1.0f, 0.0f,   // bottom right front
+		1.0f, 1.0f, 1.0f,   0.5f, 0.5f, 0.5f,   0.0f, 0.0f,   // bottom left front
+		-1.0f,  1.0f, 1.0f,   0.5f, 0.5f, 0.5f,   0.0f, 1.0f,   // top left front
+		-1.0f,  -1.0f, -1.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right back
+		1.0f, -1.0f, -1.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right back
+		1.0f, 1.0f, -1.0f,    0.0f, 0.0f, 1.0f,   0.0f, 0.0f,  // bottom left back
+		-1.0f,  1.0f, -1.0f,    1.0f, 1.0f, 0.0f,   0.0f, 1.0f   // top left back
 	};
 
 
 	int cubeIndices[] = {
+		//front face
 		0, 1, 2,
 		2, 3, 0,
-		3, 4, 5,
-		3, 5, 0,
-		0, 5, 1,
-		1, 6, 5,
-		4, 5, 6,
-		6, 7, 4,
-		1, 2, 6,
-		6, 2, 7,
-		6, 1, 2,
-		2, 7, 6
+		// right face
+		1, 5, 6,
+		6, 2, 1,
+		// back face
+		7, 6, 5,
+		5, 4, 7,
+		// left face
+		4, 0, 3,
+		3, 7, 4,
+		// bottom face
+		4, 5, 1,
+		1, 0, 4,
+		// top  face
+		3, 2, 6,
+		6, 7, 3
 	};
 
 	// Create new buffers and vertex arrays 
@@ -105,8 +111,38 @@ void Object::createModelMatrix()
 	
 }
 
-void Object::update()
+void Object::update(std::map<int, bool> &keys)
 {
+	if (keys[GLFW_KEY_W])
+	{
+		this->rotY -= 0.05;
+	}
+
+	if (keys[GLFW_KEY_A])
+	{
+		this->rotZ -= 0.05;
+	}
+
+	if (keys[GLFW_KEY_S])
+	{
+		this->rotY += 0.05;
+	}
+
+	if (keys[GLFW_KEY_D])
+	{
+		this->rotZ += 0.05;
+	}
+
+	if (keys[GLFW_KEY_Q])
+	{
+		this->rotX -= 0.05;
+	}
+
+	if (keys[GLFW_KEY_E])
+	{
+		this->rotX += 0.05;
+	}
+
 	createModelMatrix();
 }
 

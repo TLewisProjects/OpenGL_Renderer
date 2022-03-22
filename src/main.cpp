@@ -58,32 +58,13 @@ int main()
 		// Input
 		catchInput(app.window, keys);
 
-		if (keys[GLFW_KEY_W])
-		{
-			app.cube1.rotY -= 0.05;
-		}
-
-		if (keys[GLFW_KEY_A])
-		{
-			app.cube1.rotZ -= 0.05;
-		}
-
-		if (keys[GLFW_KEY_S])
-		{
-			app.cube1.rotY += 0.05;
-		}
-
-		if (keys[GLFW_KEY_D])
-		{
-			app.cube1.rotZ += 0.05;
-		}
 		if (keys[GLFW_KEY_ESCAPE])
 		{
 			glfwSetWindowShouldClose(app.window, true);
 		}
 
 		// Update objects
-		app.cube1.update();
+		app.cube1.update(keys);
 
 		// Rendering
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -132,7 +113,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 void catchInput(GLFWwindow* window, std::map<int, bool> &keys)
 {
 	// Construct vector from array for ease of iteration
-	int keysToCheck[] = { GLFW_KEY_ESCAPE, GLFW_KEY_W, GLFW_KEY_A, GLFW_KEY_S, GLFW_KEY_D };
+	int keysToCheck[] = { GLFW_KEY_ESCAPE, GLFW_KEY_W, GLFW_KEY_A, GLFW_KEY_S, GLFW_KEY_D, GLFW_KEY_Q, GLFW_KEY_E };
 	std::vector<int> keysVector(keysToCheck, keysToCheck + sizeof(keysToCheck) / sizeof(int));
 
 	for (int i : keysVector)

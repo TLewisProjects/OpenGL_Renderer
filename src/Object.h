@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <fstream>
+#include <map>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -41,7 +42,7 @@ public:
 	void loadShader(const char* vertex, const char* fragment);
 	void loadModel();
 	void createModelMatrix();
-	void update();
+	void update(std::map<int, bool>& keys);
 
 	void destroyObject();
 
