@@ -111,9 +111,9 @@ void Object::createModelMatrix()
 	
 }
 
-void Object::update(std::map<int, bool> &keys)
+void Object::update(float dt, std::map<int, bool> &keys)
 {
-	if (keys[GLFW_KEY_W])
+	/*if (keys[GLFW_KEY_W])
 	{
 		this->rotY -= 0.05;
 	}
@@ -141,7 +141,7 @@ void Object::update(std::map<int, bool> &keys)
 	if (keys[GLFW_KEY_E])
 	{
 		this->rotX += 0.05;
-	}
+	}*/
 
 	createModelMatrix();
 }

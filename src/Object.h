@@ -42,7 +42,7 @@ public:
 	void loadShader(const char* vertex, const char* fragment);
 	void loadModel();
 	void createModelMatrix();
-	void update(std::map<int, bool>& keys);
+	void update(float dt, std::map<int, bool>& keys);
 
 	void destroyObject();
 
