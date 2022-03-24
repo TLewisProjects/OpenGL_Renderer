@@ -26,9 +26,11 @@ public:
 	float pitch;
 	float yaw;
 
+	bool fpsMode;
+
 	// Methods
 	Camera();
-	Camera(glm::vec3 position, glm::vec3 target, glm::vec3 up, float speed);
+	Camera(glm::vec3 position, glm::vec3 target, glm::vec3 up, float speed, bool fpsMode=false);
 	~Camera();
 
 	void updateViewMatrix();

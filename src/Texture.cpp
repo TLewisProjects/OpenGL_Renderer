@@ -41,7 +41,7 @@ Texture::Texture(std::string textureLocation)
 		glBindTexture(GL_TEXTURE_2D, 0);
 		
 
-		std::cout << "Successfully loaded texture: " << textureLocation.c_str() << std::endl;
+		//std::cout << "Successfully loaded texture: " << textureLocation.c_str() << std::endl;
 	}
 	else
 	{

@@ -11,6 +11,7 @@ Object::Object(glm::vec3 position, glm::vec3 rotation)
 	this->rotX = rotation.x;
 	this->rotY = rotation.y;
 	this->rotZ = rotation.z;
+	this->totalVertices = 0;
 }
 
 Object::Object(glm::vec3 position, glm::vec3 rotation, const char* textureLocation, const char* vertexLocation, const char* fragmentLocation)
@@ -19,6 +20,7 @@ Object::Object(glm::vec3 position, glm::vec3 rotation, const char* textureLocati
 	this->rotX = rotation.x;
 	this->rotY = rotation.y;
 	this->rotZ = rotation.z;
+	this->totalVertices = 0;
 	loadModel();
 	loadShader(vertexLocation, fragmentLocation);
 	loadTexture(textureLocation);
@@ -76,6 +78,8 @@ void Object::loadModel()
 		3, 2, 6,
 		6, 7, 3
 	};
+
+	this->totalVertices = sizeof(cubeIndices) / sizeof(cubeIndices[0]);
 
 	// Create new buffers and vertex arrays 
 	glGenVertexArrays(1, &(this->VAO));

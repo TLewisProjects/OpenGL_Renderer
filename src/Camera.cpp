@@ -6,15 +6,18 @@ Camera::Camera()
 	this->target = glm::vec3(1.0f, 0.0f, 0.0f);
 	this->up = glm::vec3(0.0f, 1.0f, 0.0f);
 
+	this->fpsMode = false;
+
 	updateViewMatrix();
 }
 
-Camera::Camera(glm::vec3 position, glm::vec3 target, glm::vec3 up, float speed)
+Camera::Camera(glm::vec3 position, glm::vec3 target, glm::vec3 up, float speed, bool fpsMode)
 {
 	this->position = position;
 	this->target = target;
 	this->up = up;
 	this->speed = speed;
+	this->fpsMode = fpsMode;
 
 	updateViewMatrix();
 }
@@ -37,8 +40,15 @@ void Camera::update(float dt, std::map<int, bool>& keys)
 	direction.x = cos(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
 	direction.y = sin(glm::radians(pitch));
 	direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+
 	this->target = this->position + direction;
 	direction = glm::normalize(this->position - this->target);
+
+	if (fpsMode)
+	{
+		direction.y = 0.0f;
+	}
+
 	if (keys[GLFW_KEY_W])
 	{
 		this->position -= dt *speed * glm::normalize(direction);

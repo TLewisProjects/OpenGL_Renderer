@@ -31,6 +31,8 @@ public:
 	Shader shader;
 	Texture texture;
 
+	int totalVertices;
+
 	// Methods
 	Object();
 	Object(glm::vec3 position, glm::vec3 rotation);
