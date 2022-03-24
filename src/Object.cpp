@@ -25,6 +25,8 @@ Object::Object(glm::vec3 position, glm::vec3 rotation, const char* textureLocati
 	loadShader(vertexLocation, fragmentLocation);
 	loadTexture(textureLocation);
 	createModelMatrix();
+
+	Assimp::Importer importer;
 }
 
 Object::~Object()
