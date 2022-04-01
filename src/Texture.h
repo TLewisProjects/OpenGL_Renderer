@@ -19,10 +19,12 @@ public:
 	int width;
 	int height;
 	int nrChannels;
+	std::string type;
+	std::string path;
 
 	// Methods
 	Texture();
-	Texture(std::string textureLocation);
+	Texture(std::string textureLocation, std::string type);
 	~Texture();
 
 

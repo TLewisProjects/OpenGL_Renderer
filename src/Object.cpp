@@ -21,12 +21,12 @@ Object::Object(glm::vec3 position, glm::vec3 rotation, const char* textureLocati
 	this->rotY = rotation.y;
 	this->rotZ = rotation.z;
 	this->totalVertices = 0;
-	loadModel();
+	//loadModel();
+	loadModel("resources/models/backpack/backpack.obj");
 	loadShader(vertexLocation, fragmentLocation);
 	loadTexture(textureLocation);
 	createModelMatrix();
 
-	Assimp::Importer importer;
 }
 
 Object::~Object()
@@ -35,7 +35,7 @@ Object::~Object()
 
 void Object::loadTexture(const char* textureLocation)
 {
-	this->texture = Texture(textureLocation);
+	this->texture = Texture(textureLocation, "aaaa");
 }
 void Object::loadTexture(Texture newTexture)
 {
@@ -107,6 +107,11 @@ void Object::loadModel()
 
 }
 
+void Object::loadModel(std::string path)
+{
+	this->objModel = Model(path.c_str());
+}
+
 void Object::createModelMatrix()
 {
 	this->model = glm::mat4(1.0f);
@@ -150,6 +155,11 @@ void Object::update(float dt, std::map<int, bool> &keys)
 	}*/
 
 	createModelMatrix();
+}
+
+void Object::draw()
+{
+	this->objModel.Draw(this->shader);
 }
 
 void Object::destroyObject()

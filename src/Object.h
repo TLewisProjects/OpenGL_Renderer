@@ -13,6 +13,8 @@
 
 #include "Shader.h"
 #include "Texture.h"
+#include "Mesh.h"
+#include "Model.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -28,6 +30,8 @@ public:
 	float rotZ;
 
 	glm::mat4 model;
+
+	Model objModel;
 
 	GLuint VBO;
 	GLuint VAO;
@@ -47,8 +51,10 @@ public:
 	void loadTexture(Texture newTexture);
 	void loadShader(const char* vertex, const char* fragment);
 	void loadModel();
+	void loadModel(std::string path);
 	void createModelMatrix();
 	void update(float dt, std::map<int, bool>& keys);
+	void draw();
 
 	void destroyObject();
 

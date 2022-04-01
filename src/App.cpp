@@ -43,12 +43,13 @@ int App::initializeWindow(int width, int height) {
 
 void App::setupObjects()
 {
-	this->cube1 = Object(glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 0.0f, 45.0f), "resources/textures/grass_grass_0131_01_s.jpg", "src/vertex.glsl", "src/fragment.glsl");
+	//this->cube1 = Object(glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 0.0f, 45.0f), "resources/textures/grass_grass_0131_01_s.jpg", "src/vertex.glsl", "src/fragment.glsl");
 
-	for (int i = 0; i < 10; i++)
-	{
-		this->cubes.push_back(Object(glm::vec3((i * 3.0f) - 9.0f, 0.0f, -3.0f), glm::vec3(0.0f, 0.0f, 45.0f), "resources/textures/grass_grass_0131_01_s.jpg", "src/vertex.glsl", "src/fragment.glsl"));
-	}
+	//for (int i = 0; i < 1; i++)
+	//{
+	//	this->cubes.push_back(Object(glm::vec3((i * 3.0f) - 9.0f, 0.0f, -3.0f), glm::vec3(0.0f, 0.0f, 45.0f), "resources/textures/grass_grass_0131_01_s.jpg", "src/vertex.glsl", "src/fragment.glsl"));
+	//}
+	this->cubes.push_back(Object(glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 0.0f, 45.0f), "resources/textures/grass_grass_0131_01_s.jpg", "src/vertex.glsl", "src/fragment.glsl"));
 };
 
 void App::setupCamera()

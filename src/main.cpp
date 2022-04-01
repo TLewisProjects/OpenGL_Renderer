@@ -84,20 +84,12 @@ int main()
 			// Update object
 			object.update(deltaTime, keys);
 
-			glUseProgram(object.shader.ID);
-
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, object.texture.ID);
-
-			app.cube1.shader.setInt("ourTexture", 0);
-			glBindVertexArray(object.VAO);
-
 			// create transformation matrix
 			object.shader.setMat4("model", object.model);
 			object.shader.setMat4("view", app.camera.view);
 			object.shader.setMat4("projection", projection);
 
-			glDrawElements(GL_TRIANGLES, object.totalVertices, GL_UNSIGNED_INT, (void*)(0));
+			object.draw();
 		}
 
 		// Swap buffers

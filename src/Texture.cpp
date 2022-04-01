@@ -4,7 +4,7 @@ Texture::Texture()
 {
 }
 
-Texture::Texture(std::string textureLocation)
+Texture::Texture(std::string textureLocation, std::string type)
 {
 	//this->ID = 0;
 	unsigned char* data = stbi_load(textureLocation.c_str(), &(this->width), &(this->height), &(this->nrChannels), 0);
@@ -50,6 +50,8 @@ Texture::Texture(std::string textureLocation)
 
 	// Free texture data
 	stbi_image_free(data);
+
+	this->type = type;
 
 }
 
